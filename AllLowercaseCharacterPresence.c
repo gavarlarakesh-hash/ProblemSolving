@@ -1,21 +1,26 @@
 #include <stdio.h>
-#include <ctype.h>
 
 int main() {
-    char st[1000001];
-    scanf("%s", st);
+    char str[1000001];
+    scanf("%s", str);
 
-    unsigned int flag = 0;
+    unsigned int lower = 0, upper = 0;
 
-    for (int i = 0; st[i] != '\0'; i++) {
-        char ch = tolower(st[i]);
-
-        if (ch >= 'a' && ch <= 'z') {
-            flag |= (1U << (ch - 'a'));
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] >= 'a' && str[i] <= 'z') {
+            lower |= (1U << (str[i] - 'a'));
+        }
+        else if (str[i] >= 'A' && str[i] <= 'Z') {
+            upper |= (1U << (str[i] - 'A'));
         }
     }
 
-    printf(flag == ((1U << 26) - 1) ? "Yes" : "No");
+    unsigned int all = (1U << 26) - 1;
+
+    if (lower == all && upper == all)
+        printf("Yes");
+    else
+        printf("No");
 
     return 0;
 }
