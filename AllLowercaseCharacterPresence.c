@@ -1,21 +1,17 @@
 #include <stdio.h>
-
 int main() {
     char st[1000001];
-    scanf("%s", st);
-
-    unsigned int flag = 0;
-
-    for (int i = 0; st[i] != '\0'; i++) {
-        if (st[i] >= 'a' && st[i] <= 'z') {
-            flag |= (1U << (st[i] - 'a'));
-        }
+    scanf("%s",st);
+    int flag=0,fl=0;
+    for(int i=0;st[i];i++){
+        if(st[i]>='a' && st[i]<='z')
+        flag=flag|(1<<(st[i]-'a'));
+        else
+        fl=fl|(1<<(st[i]-'A'));
     }
-
-    if (flag == ((1U << 26) - 1))
-        printf("Yes");
+    if((flag==(1<<26)-1)&&(fl==(1<<26)-1))
+    printf("Yes");
     else
-        printf("No");
-
+    printf("No");
     return 0;
 }
